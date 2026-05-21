@@ -3,38 +3,63 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="robots" content="noindex, nofollow"/>
   <title>Admin — Natural Beauty Clinic & Academy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'DM Sans',sans-serif;background:#1a0a10}
-    #loading{position:fixed;inset:0;background:linear-gradient(135deg,#1a0a10,#2d1520);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e8c97a;z-index:9999;transition:opacity 0.5s}
+    #loading{
+      position:fixed;inset:0;
+      background:linear-gradient(135deg,#1a0a10,#2d1520);
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      color:#e8c97a;z-index:9999;
+      transition:opacity 0.6s ease
+    }
     #loading.hide{opacity:0;pointer-events:none}
-    .logo{font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin:20px 0 8px}
-    .tagline{font-size:0.82rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase}
-    .spinner{width:44px;height:44px;border:3px solid rgba(232,201,122,0.15);border-top-color:#e8c97a;border-radius:50%;animation:spin 0.9s linear infinite}
+    .spinner{width:44px;height:44px;border:3px solid rgba(232,201,122,0.15);border-top-color:#e8c97a;border-radius:50%;animation:spin 0.9s linear infinite;margin-bottom:24px}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .status{font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:12px}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#e8c97a;margin-bottom:6px}
+    .sub{font-size:0.78rem;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
+    .status{font-size:0.78rem;color:rgba(255,255,255,0.25);transition:opacity 0.3s}
   </style>
 </head>
 <body>
   <div id="loading">
     <div class="spinner"></div>
     <div class="logo">Natural Beauty</div>
-    <div class="tagline">Admin Panel Loading</div>
-    <div class="status" id="status">Connecting to CMS...</div>
+    <div class="sub">Clinic &amp; Academy</div>
+    <div class="status" id="statusMsg">Loading admin panel...</div>
   </div>
+
+  <!-- Netlify Identity Widget — handles login -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Decap CMS — the admin panel itself -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
   <script>
-    const statuses = ['Connecting to CMS...','Loading media library...','Preparing collections...','Almost ready...'];
-    let si = 0;
-    const statusEl = document.getElementById('status');
-    const interval = setInterval(()=>{ si=(si+1)%statuses.length; statusEl.textContent=statuses[si]; },1200);
-    window.addEventListener('load',()=>{
-      clearInterval(interval);
-      setTimeout(()=>document.getElementById('loading').classList.add('hide'),800);
+    // Rotate status messages while loading
+    const msgs = [
+      'Loading admin panel...',
+      'Connecting to GitHub...',
+      'Loading media library...',
+      'Preparing content editor...',
+      'Almost ready...'
+    ];
+    let i = 0;
+    const el = document.getElementById('statusMsg');
+    const timer = setInterval(() => {
+      i = (i + 1) % msgs.length;
+      el.textContent = msgs[i];
+    }, 1400);
+
+    // Hide loading screen once CMS is ready
+    window.addEventListener('load', () => {
+      clearInterval(timer);
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('hide');
+      }, 1200);
     });
   </script>
 </body>
