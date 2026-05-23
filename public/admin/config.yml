@@ -1,33 +1,31 @@
 # ═══════════════════════════════════════════════════════════
 # NATURAL BEAUTY CLINIC & ACADEMY
-# Decap CMS Configuration — Production Ready
-# 
-# IMPORTANT AFTER DEPLOYMENT:
-# Replace YOUR-SITE-NAME below with your actual Netlify site name
-# Example: if your site is natural-beauty.netlify.app
-# then set: site_url: https://natural-beauty.netlify.app
+# Decap CMS — Production Config
+# Site: https://naturalbeautyclinicandacademy.netlify.app
 # ═══════════════════════════════════════════════════════════
 
 backend:
   name: git-gateway
   branch: main
 
-# ── MEDIA / FILE UPLOADS ──
-# media_folder = where files are saved in your GitHub repo
-# public_folder = the URL path used to display them on your website
+# Your real website URL — fixes "View Live Site" wrong URL problem
+site_url: https://naturalbeautyclinicandacademy.netlify.app
+display_url: https://naturalbeautyclinicandacademy.netlify.app
+
+# ── MEDIA UPLOADS ──
+# media_folder = where files save in your GitHub repo
+# public_folder = URL path used to show them on your website
 media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
 
-# ── NO DRAFT MODE ──
-# Removed editorial_workflow so your changes PUBLISH IMMEDIATELY
-# No more "changes not saving" problem
+# NO editorial_workflow = changes publish IMMEDIATELY (fixes saves not working)
 
-# ── COLLECTIONS ──
+# ══════════════════════════════════════════
+# CONTENT COLLECTIONS
+# ══════════════════════════════════════════
 collections:
 
-  # ─────────────────────────────
-  # 🏠 HOMEPAGE SETTINGS
-  # ─────────────────────────────
+  # ── 🏠 HOMEPAGE ──
   - name: "homepage"
     label: "🏠 Homepage"
     files:
@@ -36,120 +34,42 @@ collections:
         name: "hero"
         file: "public/_data/hero.json"
         fields:
-          - label: "Main Heading"
-            name: "heading"
-            widget: "string"
-            hint: "Main big heading on homepage"
-          - label: "Sub Heading"
-            name: "subheading"
-            widget: "string"
-            hint: "Smaller text below the main heading"
-          - label: "Hero Image"
-            name: "image"
-            widget: "image"
-            required: false
-            hint: "Upload a beautiful photo for the hero section"
-          - label: "Book Button Text"
-            name: "cta_text"
-            widget: "string"
-            default: "Book Appointment"
-          - label: "Secondary Button Text"
-            name: "cta2_text"
-            widget: "string"
-            default: "View Courses"
-          - label: "Announcement Banner Text"
-            name: "announcement"
-            widget: "string"
-            required: false
-            hint: "e.g. 🎉 Special Offer — 20% off this month!"
-          - label: "Show Announcement Banner?"
-            name: "show_announcement"
-            widget: "boolean"
-            default: false
+          - {label: "Main Heading", name: "heading", widget: "string"}
+          - {label: "Sub Heading", name: "subheading", widget: "string"}
+          - {label: "Hero Image", name: "image", widget: "image", required: false}
+          - {label: "Book Button Text", name: "cta_text", widget: "string", default: "Book Appointment"}
+          - {label: "Secondary Button Text", name: "cta2_text", widget: "string", default: "View Courses"}
+          - {label: "Announcement Text", name: "announcement", widget: "string", required: false, hint: "e.g. 🎉 20% off this month!"}
+          - {label: "Show Announcement?", name: "show_announcement", widget: "boolean", default: false}
 
       - label: "About Section"
         name: "about"
         file: "public/_data/about.json"
         fields:
-          - label: "Heading"
-            name: "heading"
-            widget: "string"
-          - label: "About Text"
-            name: "text"
-            widget: "markdown"
-          - label: "About Image"
-            name: "image"
-            widget: "image"
-            required: false
-          - label: "Years of Experience"
-            name: "years"
-            widget: "number"
-            default: 10
-          - label: "Happy Clients"
-            name: "clients"
-            widget: "number"
-            default: 2500
-          - label: "Courses Offered"
-            name: "courses"
-            widget: "number"
-            default: 12
-          - label: "Students Trained"
-            name: "students"
-            widget: "number"
-            default: 800
+          - {label: "Heading", name: "heading", widget: "string"}
+          - {label: "About Text", name: "text", widget: "markdown"}
+          - {label: "About Image", name: "image", widget: "image", required: false}
+          - {label: "Years of Experience", name: "years", widget: "number", default: 10}
+          - {label: "Happy Clients", name: "clients", widget: "number", default: 2500}
+          - {label: "Courses Offered", name: "courses", widget: "number", default: 12}
+          - {label: "Students Trained", name: "students", widget: "number", default: 800}
 
       - label: "Contact & Business Info"
         name: "contact"
         file: "public/_data/contact.json"
         fields:
-          - label: "Phone Number 1"
-            name: "phone1"
-            widget: "string"
-            default: "9843805588"
-          - label: "Phone Number 2"
-            name: "phone2"
-            widget: "string"
-            default: "9823207031"
-          - label: "WhatsApp Number (with country code)"
-            name: "whatsapp"
-            widget: "string"
-            default: "9779843805588"
-            hint: "Include country code: 977 for Nepal"
-          - label: "Email Address"
-            name: "email"
-            widget: "string"
-            required: false
-          - label: "Address"
-            name: "address"
-            widget: "string"
-            default: "New Baneshwor, Kathmandu, Nepal"
-          - label: "Facebook Page URL"
-            name: "facebook"
-            widget: "string"
-            required: false
-            hint: "e.g. https://facebook.com/yourpage"
-          - label: "Instagram Profile URL"
-            name: "instagram"
-            widget: "string"
-            required: false
-            hint: "e.g. https://instagram.com/yourprofile"
-          - label: "TikTok URL"
-            name: "tiktok"
-            widget: "string"
-            required: false
-          - label: "Google Maps Embed URL"
-            name: "maps_url"
-            widget: "string"
-            required: false
-            hint: "Paste the src URL from Google Maps embed code"
-          - label: "eSewa Number"
-            name: "esewa"
-            widget: "string"
-            default: "9843805588"
+          - {label: "Phone 1", name: "phone1", widget: "string", default: "9843805588"}
+          - {label: "Phone 2", name: "phone2", widget: "string", default: "9823207031"}
+          - {label: "WhatsApp (with country code)", name: "whatsapp", widget: "string", default: "9779843805588", hint: "977 = Nepal country code"}
+          - {label: "Email", name: "email", widget: "string", required: false}
+          - {label: "Address", name: "address", widget: "string", default: "New Baneshwor, Kathmandu, Nepal"}
+          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
+          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
+          - {label: "TikTok URL", name: "tiktok", widget: "string", required: false}
+          - {label: "Google Maps Embed URL", name: "maps_url", widget: "string", required: false}
+          - {label: "eSewa Number", name: "esewa", widget: "string", default: "9843805588"}
 
-  # ─────────────────────────────
-  # 💅 SERVICES
-  # ─────────────────────────────
+  # ── 💅 SERVICES ──
   - name: "services"
     label: "💅 Services"
     folder: "public/_data/services"
@@ -159,54 +79,17 @@ collections:
     format: "json"
     summary: "{{title}} — Rs. {{price}}"
     fields:
-      - label: "Service Name"
-        name: "title"
-        widget: "string"
-        hint: "e.g. Hair Cut & Styling"
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Hair Care"
-          - "Skin Care"
-          - "Makeup"
-          - "Nail Art"
-          - "Bridal"
-          - "Body Treatment"
-      - label: "Icon (emoji)"
-        name: "icon"
-        widget: "string"
-        default: "💅"
-        hint: "Paste any emoji e.g. 💇 💄 ✨"
-      - label: "Description"
-        name: "description"
-        widget: "text"
-        hint: "Short description shown on the service card"
-      - label: "Price (Rs.)"
-        name: "price"
-        widget: "string"
-        hint: "e.g. 1,500 or 1,500 - 3,000"
-      - label: "Duration"
-        name: "duration"
-        widget: "string"
-        required: false
-        hint: "e.g. 60 mins or 2-3 hours"
-      - label: "Service Photo"
-        name: "image"
-        widget: "image"
-        required: false
-      - label: "Show as Featured?"
-        name: "featured"
-        widget: "boolean"
-        default: false
-      - label: "Active (visible on website)?"
-        name: "active"
-        widget: "boolean"
-        default: true
+      - {label: "Service Name", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["Hair Care","Skin Care","Makeup","Nail Art","Bridal","Body Treatment"]}
+      - {label: "Icon (emoji)", name: "icon", widget: "string", default: "💅"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price (Rs.)", name: "price", widget: "string", hint: "e.g. 1,500 or 1,500 - 3,000"}
+      - {label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g. 60 mins"}
+      - {label: "Service Photo", name: "image", widget: "image", required: false}
+      - {label: "Featured?", name: "featured", widget: "boolean", default: false}
+      - {label: "Active?", name: "active", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # 🎓 ACADEMY COURSES
-  # ─────────────────────────────
+  # ── 🎓 COURSES ──
   - name: "courses"
     label: "🎓 Academy Courses"
     folder: "public/_data/courses"
@@ -216,52 +99,19 @@ collections:
     format: "json"
     summary: "{{title}} — {{duration}}"
     fields:
-      - label: "Course Name"
-        name: "title"
-        widget: "string"
-      - label: "Icon (emoji)"
-        name: "icon"
-        widget: "string"
-        default: "✂️"
-      - label: "Course Photo"
-        name: "image"
-        widget: "image"
-        required: false
-      - label: "Duration"
-        name: "duration"
-        widget: "string"
-        hint: "e.g. 3 Months"
-      - label: "Course Fee (Rs.)"
-        name: "fee"
-        widget: "string"
-        hint: "e.g. 25,000"
-      - label: "Schedule / Batch Times"
-        name: "schedule"
-        widget: "string"
-        hint: "e.g. Morning & Evening Batch"
-      - label: "Course Description"
-        name: "description"
-        widget: "markdown"
-      - label: "Topics Covered"
-        name: "topics"
-        widget: "list"
-        hint: "Add each topic separately"
-      - label: "Certificate Awarded?"
-        name: "certificate"
-        widget: "boolean"
-        default: true
-      - label: "Online Available?"
-        name: "online"
-        widget: "boolean"
-        default: false
-      - label: "Currently Enrolling?"
-        name: "enrolling"
-        widget: "boolean"
-        default: true
+      - {label: "Course Name", name: "title", widget: "string"}
+      - {label: "Icon (emoji)", name: "icon", widget: "string", default: "✂️"}
+      - {label: "Course Photo", name: "image", widget: "image", required: false}
+      - {label: "Duration", name: "duration", widget: "string", hint: "e.g. 3 Months"}
+      - {label: "Fee (Rs.)", name: "fee", widget: "string", hint: "e.g. 25,000"}
+      - {label: "Schedule", name: "schedule", widget: "string", hint: "e.g. Morning & Evening Batch"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Topics Covered", name: "topics", widget: "list"}
+      - {label: "Certificate Awarded?", name: "certificate", widget: "boolean", default: true}
+      - {label: "Online Available?", name: "online", widget: "boolean", default: false}
+      - {label: "Currently Enrolling?", name: "enrolling", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # 🖼️ GALLERY
-  # ─────────────────────────────
+  # ── 🖼️ GALLERY ──
   - name: "gallery"
     label: "🖼️ Gallery"
     folder: "public/_data/gallery"
@@ -271,35 +121,13 @@ collections:
     format: "json"
     summary: "{{title}} — {{category}}"
     fields:
-      - label: "Photo Caption"
-        name: "title"
-        widget: "string"
-        hint: "e.g. Bridal Hair & Makeup"
-      - label: "Upload Photo"
-        name: "image"
-        widget: "image"
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Hair"
-          - "Skin"
-          - "Makeup"
-          - "Bridal"
-          - "Nails"
-          - "Academy"
-          - "Before & After"
-      - label: "Show as Featured?"
-        name: "featured"
-        widget: "boolean"
-        default: false
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
+      - {label: "Photo Caption", name: "title", widget: "string"}
+      - {label: "Upload Photo", name: "image", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["Hair","Skin","Makeup","Bridal","Nails","Academy","Before & After"]}
+      - {label: "Featured?", name: "featured", widget: "boolean", default: false}
+      - {label: "Date", name: "date", widget: "datetime"}
 
-  # ─────────────────────────────
-  # 🎥 VIDEOS
-  # ─────────────────────────────
+  # ── 🎥 VIDEOS ──
   - name: "videos"
     label: "🎥 Videos"
     folder: "public/_data/videos"
@@ -309,37 +137,14 @@ collections:
     format: "json"
     summary: "{{title}}"
     fields:
-      - label: "Video Title"
-        name: "title"
-        widget: "string"
-      - label: "YouTube Video URL"
-        name: "url"
-        widget: "string"
-        hint: "Paste the full YouTube link e.g. https://youtube.com/watch?v=xxxxx"
-      - label: "Thumbnail Image"
-        name: "thumbnail"
-        widget: "image"
-        required: false
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Tutorial"
-          - "Before & After"
-          - "Course Preview"
-          - "Client Review"
-          - "Promotional"
-      - label: "Description"
-        name: "description"
-        widget: "text"
-        required: false
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
+      - {label: "Video Title", name: "title", widget: "string"}
+      - {label: "YouTube URL", name: "url", widget: "string", hint: "Paste full YouTube link e.g. https://youtube.com/watch?v=xxxxx"}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image", required: false}
+      - {label: "Category", name: "category", widget: "select", options: ["Tutorial","Before & After","Course Preview","Client Review","Promotional"]}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Date", name: "date", widget: "datetime"}
 
-  # ─────────────────────────────
-  # 📁 DOWNLOADS & FILES
-  # ─────────────────────────────
+  # ── 📁 DOWNLOADS ──
   - name: "downloads"
     label: "📁 Downloads & Files"
     folder: "public/_data/downloads"
@@ -349,57 +154,16 @@ collections:
     format: "json"
     summary: "{{title}} ({{type}})"
     fields:
-      - label: "File Title"
-        name: "title"
-        widget: "string"
-        hint: "e.g. Service Menu 2026"
-      - label: "Upload File"
-        name: "file"
-        widget: "file"
-        hint: "Upload PDF, DOCX, Excel, ZIP or image"
-      - label: "File Type"
-        name: "type"
-        widget: "select"
-        options:
-          - "PDF"
-          - "DOCX"
-          - "Excel"
-          - "ZIP"
-          - "Image"
-          - "Video"
-          - "Other"
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Service Menu"
-          - "Price List"
-          - "Course Prospectus"
-          - "Certificate"
-          - "Form"
-          - "Brochure"
-          - "Other"
-      - label: "Description"
-        name: "description"
-        widget: "text"
-        required: false
-        hint: "Short description shown below the file name"
-      - label: "File Size"
-        name: "size"
-        widget: "string"
-        required: false
-        hint: "e.g. 2.4 MB — enter manually"
-      - label: "Upload Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Visible to public?"
-        name: "public"
-        widget: "boolean"
-        default: true
+      - {label: "File Title", name: "title", widget: "string"}
+      - {label: "Upload File", name: "file", widget: "file", hint: "PDF, DOCX, Excel, ZIP, Image"}
+      - {label: "File Type", name: "type", widget: "select", options: ["PDF","DOCX","Excel","ZIP","Image","Video","Other"]}
+      - {label: "Category", name: "category", widget: "select", options: ["Service Menu","Price List","Course Prospectus","Certificate","Form","Brochure","Other"]}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "File Size", name: "size", widget: "string", required: false, hint: "e.g. 2.4 MB"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Public?", name: "public", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # 📝 BLOG & NEWS
-  # ─────────────────────────────
+  # ── 📝 BLOG ──
   - name: "blog"
     label: "📝 Blog & News"
     folder: "public/blog/posts"
@@ -407,50 +171,18 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "json"
     format: "json"
-    summary: "{{title}} ({{date}})"
+    summary: "{{title}}"
     fields:
-      - label: "Post Title"
-        name: "title"
-        widget: "string"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Featured Image"
-        name: "image"
-        widget: "image"
-        required: false
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Haircare Tips"
-          - "Skin Care"
-          - "Bridal Trends"
-          - "Hair Science"
-          - "Color Science"
-          - "Academy News"
-          - "Offers"
-          - "Studio News"
-      - label: "Short Excerpt"
-        name: "excerpt"
-        widget: "text"
-        hint: "1-2 sentence summary shown on the blog card"
-      - label: "Full Article"
-        name: "body"
-        widget: "markdown"
-        hint: "Write your full article here"
-      - label: "Author Name"
-        name: "author"
-        widget: "string"
-        default: "Natural Beauty Clinic"
-      - label: "Published? (uncheck to hide)"
-        name: "published"
-        widget: "boolean"
-        default: true
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Category", name: "category", widget: "select", options: ["Haircare Tips","Skin Care","Bridal Trends","Hair Science","Color Science","Academy News","Offers","Studio News"]}
+      - {label: "Short Excerpt", name: "excerpt", widget: "text", hint: "1-2 sentence summary for the blog card"}
+      - {label: "Full Article", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", default: "Natural Beauty Clinic"}
+      - {label: "Published?", name: "published", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # 👩‍🏫 TEAM MEMBERS
-  # ─────────────────────────────
+  # ── 👩‍🏫 TEAM ──
   - name: "team"
     label: "👩‍🏫 Team"
     folder: "public/_data/team"
@@ -460,37 +192,15 @@ collections:
     format: "json"
     summary: "{{name}} — {{role}}"
     fields:
-      - label: "Full Name"
-        name: "name"
-        widget: "string"
-      - label: "Photo"
-        name: "photo"
-        widget: "image"
-        required: false
-      - label: "Job Title / Role"
-        name: "role"
-        widget: "string"
-        hint: "e.g. Head Stylist & Lead Trainer"
-      - label: "Specialization"
-        name: "specialization"
-        widget: "string"
-        hint: "e.g. Hair Color Specialist"
-      - label: "Short Bio"
-        name: "bio"
-        widget: "text"
-      - label: "Skills"
-        name: "skills"
-        widget: "list"
-        hint: "Add each skill separately e.g. Hair Color, Bridal, Keratin"
-      - label: "Display Order"
-        name: "order"
-        widget: "number"
-        default: 1
-        hint: "1 = shown first, 2 = second, etc."
+      - {label: "Full Name", name: "name", widget: "string"}
+      - {label: "Photo", name: "photo", widget: "image", required: false}
+      - {label: "Role / Title", name: "role", widget: "string"}
+      - {label: "Specialization", name: "specialization", widget: "string"}
+      - {label: "Short Bio", name: "bio", widget: "text"}
+      - {label: "Skills", name: "skills", widget: "list", hint: "Add each skill separately"}
+      - {label: "Display Order", name: "order", widget: "number", default: 1, hint: "1 = shown first"}
 
-  # ─────────────────────────────
-  # ⭐ TESTIMONIALS
-  # ─────────────────────────────
+  # ── ⭐ TESTIMONIALS ──
   - name: "testimonials"
     label: "⭐ Testimonials"
     folder: "public/_data/testimonials"
@@ -500,37 +210,16 @@ collections:
     format: "json"
     summary: "{{name}} — {{rating}} stars"
     fields:
-      - label: "Client Name"
-        name: "name"
-        widget: "string"
-      - label: "Client Photo"
-        name: "photo"
-        widget: "image"
-        required: false
-      - label: "Review Text"
-        name: "review"
-        widget: "text"
-      - label: "Star Rating (1-5)"
-        name: "rating"
-        widget: "number"
-        min: 1
-        max: 5
-        default: 5
-      - label: "Service They Received"
-        name: "service"
-        widget: "string"
-        required: false
-        hint: "e.g. Bridal Package"
-      - label: "Show on Website?"
-        name: "featured"
-        widget: "boolean"
-        default: true
+      - {label: "Client Name", name: "name", widget: "string"}
+      - {label: "Client Photo", name: "photo", widget: "image", required: false}
+      - {label: "Review", name: "review", widget: "text"}
+      - {label: "Rating (1-5)", name: "rating", widget: "number", min: 1, max: 5, default: 5}
+      - {label: "Service Received", name: "service", widget: "string", required: false}
+      - {label: "Show on Website?", name: "featured", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # 📢 ANNOUNCEMENTS & OFFERS
-  # ─────────────────────────────
+  # ── 📢 ANNOUNCEMENTS ──
   - name: "announcements"
-    label: "📢 Announcements & Offers"
+    label: "📢 Offers & Announcements"
     folder: "public/_data/announcements"
     create: true
     slug: "{{slug}}"
@@ -538,42 +227,15 @@ collections:
     format: "json"
     summary: "{{title}} ({{type}})"
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-        hint: "e.g. 🎉 20% Off All Hair Treatments This Month!"
-      - label: "Type"
-        name: "type"
-        widget: "select"
-        options:
-          - "Offer"
-          - "Announcement"
-          - "Notice"
-          - "Event"
-          - "New Service"
-      - label: "Content"
-        name: "content"
-        widget: "markdown"
-      - label: "Image"
-        name: "image"
-        widget: "image"
-        required: false
-      - label: "Valid Until"
-        name: "expiry"
-        widget: "datetime"
-        required: false
-      - label: "Currently Active?"
-        name: "active"
-        widget: "boolean"
-        default: true
-      - label: "Show on Homepage Banner?"
-        name: "homepage"
-        widget: "boolean"
-        default: true
+      - {label: "Title", name: "title", widget: "string", hint: "e.g. 🎉 20% Off This Month!"}
+      - {label: "Type", name: "type", widget: "select", options: ["Offer","Announcement","Notice","Event","New Service"]}
+      - {label: "Content", name: "content", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Valid Until", name: "expiry", widget: "datetime", required: false}
+      - {label: "Active?", name: "active", widget: "boolean", default: true}
+      - {label: "Show on Homepage?", name: "homepage", widget: "boolean", default: true}
 
-  # ─────────────────────────────
-  # ❓ FAQ
-  # ─────────────────────────────
+  # ── ❓ FAQ ──
   - name: "faq"
     label: "❓ FAQ"
     folder: "public/_data/faq"
@@ -583,23 +245,7 @@ collections:
     format: "json"
     summary: "{{question}}"
     fields:
-      - label: "Question"
-        name: "question"
-        widget: "string"
-      - label: "Answer"
-        name: "answer"
-        widget: "text"
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "Services"
-          - "Academy"
-          - "Booking"
-          - "Payment"
-          - "General"
-      - label: "Display Order"
-        name: "order"
-        widget: "number"
-        default: 1
-        hint: "1 = shown first"
+      - {label: "Question", name: "question", widget: "string"}
+      - {label: "Answer", name: "answer", widget: "text"}
+      - {label: "Category", name: "category", widget: "select", options: ["Services","Academy","Booking","Payment","General"]}
+      - {label: "Display Order", name: "order", widget: "number", default: 1}
